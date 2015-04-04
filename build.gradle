@@ -1,0 +1,27 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'org.springframework:spring-test:4.1.5.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.1.5.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.2.2.RELEASE'
+    compile 'org.slf4j:slf4j-api:1.7.10'
+    compile 'hsqldb:hsqldb:1.8.0.10'
+}
+
+test {
+    testLogging {
+        events 'started', 'passed'
+    }
+
+    onOutput { descriptor, event ->
+        logger.lifecycle(event.message)
+    }
+}
