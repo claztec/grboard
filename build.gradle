@@ -1,19 +1,47 @@
-apply plugin: 'java'
+buildscript {
+    repositories {
+        maven {url 'http://repo.spring.io/libs-snapshot'}
+    }
+    dependencies {
+        classpath ('org.springframework.boot:spring-boot-gradle-plugin:1.2.4.BUILD-SNAPSHOT')
+    }
+}
 
-sourceCompatibility = 1.7
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
+
+war {
+    baseName = 'board'
+    version = '0.1.0'
+}
+
 version = '1.0'
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    jcenter()
+    maven { url 'http://repo.spring.io/libs-snapshot' }
+}
+
+configurations {
+    providedRuntime
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'org.springframework:spring-test:4.1.5.RELEASE'
-    compile 'org.springframework:spring-jdbc:4.1.5.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-web:1.2.2.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-velocity:1.2.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc:1.2.3.RELEASE'
+//    compile 'org.springframework:spring-jdbc:4.1.5.RELEASE'
+    compile 'aspectj:aspectjrt:1.5.4'
+    compile 'org.aspectj:aspectjweaver:1.8.5'
     compile 'org.slf4j:slf4j-api:1.7.10'
-    compile 'hsqldb:hsqldb:1.8.0.10'
+    compile 'ch.qos.logback:logback-classic:1.0.13'
+    compile 'mysql:mysql-connector-java:5.1.35'
+    testCompile 'org.springframework.boot:spring-boot-starter-test:1.2.3.RELEASE'
+    testCompile 'junit:junit:4.12'
 }
 
 test {
