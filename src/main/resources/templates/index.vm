@@ -2,8 +2,8 @@
 <html>
 <head lang="ko">
     <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <body>
     #if(true)
@@ -12,6 +12,7 @@
     한글
     ${message}
     ${time}
+    ${title}
     #end
 </body>
 </html>

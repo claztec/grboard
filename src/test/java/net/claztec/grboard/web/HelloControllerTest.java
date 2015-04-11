@@ -1,6 +1,7 @@
 package net.claztec.grboard.web;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -40,6 +41,7 @@ public class HelloControllerTest {
     }
 
     @Test
+    @Ignore
     public void getIndex() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/index").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())

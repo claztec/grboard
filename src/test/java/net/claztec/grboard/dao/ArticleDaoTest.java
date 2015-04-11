@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by claztec on 15. 4. 10.
@@ -22,9 +22,24 @@ public class ArticleDaoTest {
     @Autowired
     private ArticleDao articleDao;
 
+//    @Test
+//    public void getArticleId() {
+//        String title = articleDao.getTest();
+//        assertThat(title, is("테스트"));
+//    }
+
+    @Test
+    public void test() {
+        assertThat("name", is("name"));
+    }
+
     @Test
     public void getArticleId() {
+        // 1. article dao 만들기
+        // 2. article dao에서 테스트 메소드 호출하기.
+        // 3. 테스트 메소드는 db연결이 되어있어야함.
+
         String title = articleDao.getTest();
-        assertThat(title, is("테스트"));
+        assertThat(title, is("테스트1"));
     }
 }
