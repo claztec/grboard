@@ -24,7 +24,13 @@ public class HelloController {
 
     @RequestMapping(value = "/hello")
     @ResponseBody
-    public Object hello() {
+    public String helloToText() {
+        return "hello";
+    }
+
+    @RequestMapping(value = "/hello.json")
+    @ResponseBody
+    public Object helloToJson() {
         Map<String, Object> model = new HashMap<>();
         model.put("time", new Date());
         model.put("message", "welcome");
@@ -41,7 +47,7 @@ public class HelloController {
         return "index";
     }
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "/index.do")
     public ModelAndView index2() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("time", new Date());

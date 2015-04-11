@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -41,10 +42,8 @@ public class HelloControllerTest {
     }
 
     @Test
-    @Ignore
     public void getIndex() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/index").accept(MediaType.TEXT_HTML))
-                .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("index")));
+        mvc.perform(MockMvcRequestBuilders.get("/index.do").accept(MediaType.TEXT_HTML))
+                .andExpect(status().isOk());
     }
 }

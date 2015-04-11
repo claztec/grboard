@@ -22,17 +22,6 @@ public class ArticleDaoTest {
     @Autowired
     private ArticleDao articleDao;
 
-//    @Test
-//    public void getArticleId() {
-//        String title = articleDao.getTest();
-//        assertThat(title, is("테스트"));
-//    }
-
-    @Test
-    public void test() {
-        assertThat("name", is("name"));
-    }
-
     @Test
     public void getArticleId() {
         // 1. article dao 만들기
@@ -40,6 +29,6 @@ public class ArticleDaoTest {
         // 3. 테스트 메소드는 db연결이 되어있어야함.
 
         String title = articleDao.getTest();
-        assertThat(title, is("테스트1"));
+        assertThat(title, is("테스트"));
     }
 }
