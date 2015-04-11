@@ -20,7 +20,7 @@ war {
 version = '1.0'
 
 repositories {
-    mavenLocal()
+//    mavenLocal()
     mavenCentral()
     jcenter()
     maven { url 'http://repo.spring.io/libs-snapshot' }
@@ -34,7 +34,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-velocity:1.2.3.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-jdbc:1.2.3.RELEASE'
-//    compile 'org.springframework:spring-jdbc:4.1.5.RELEASE'
     compile 'aspectj:aspectjrt:1.5.4'
     compile 'org.aspectj:aspectjweaver:1.8.5'
     compile 'org.slf4j:slf4j-api:1.7.10'
