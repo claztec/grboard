@@ -1,6 +1,8 @@
 package net.claztec.grboard.web;
 
 import net.claztec.grboard.dao.ArticleDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +21,15 @@ import java.util.Map;
 @Controller
 public class HelloController {
 
+    public static final Logger log = LoggerFactory.getLogger(HelloController.class);
+
     @Autowired
     private ArticleDao articleDao;
 
     @RequestMapping(value = "/hello")
     @ResponseBody
     public String helloToText() {
+        log.debug("@@@@@ hello @@@@@");
         return "hello";
     }
 
