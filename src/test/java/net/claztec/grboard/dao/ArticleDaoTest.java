@@ -8,11 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationContextLoader;
-import org.springframework.test.annotation.Repeat;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+
+import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -20,7 +24,7 @@ import static org.junit.Assert.assertThat;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes={ApplicationConfig.class}, loader = SpringApplicationContextLoader.class)
+@ContextConfiguration(classes = {ApplicationConfig.class}, loader = SpringApplicationContextLoader.class)
 public class ArticleDaoTest {
 
     private static final Logger log = LoggerFactory.getLogger(ArticleDaoTest.class);
@@ -63,4 +67,42 @@ public class ArticleDaoTest {
         assertThat(article.getArticleId(), is(articleId));
         log.debug(article.toString());
     }
+
+    @Test
+    public void testFindAll() {
+        List<Article> articleList = articleDao.findAll();
+        assertThat(articleList.size(), greaterThan(0));
+        for(Article article : articleList) {
+            log.debug(article.toString());
+        }
+    }
+
+    @Test
+    public void testRemoveById() {
+        List<Article> articleList = articleDao.findAll();
+
+        int length = articleList.size();
+        assertThat(length, greaterThan(0));
+        Article article = articleList.get(length - 1);
+        int count = articleDao.removeById(article.getArticleId());
+        assertThat(count, is(1));
+    }
+
+    @Test
+    public void testUpdateById() {
+        List<Article> articleList = articleDao.findAll();
+
+        int length = articleList.size();
+        assertThat(length, greaterThan(0));
+        Article article = articleList.get(length - 1);
+
+        article.setTitle("Change Title");
+        article.upHit();
+        article.upHate();
+        article.upLike();
+        article.setContents("Change Contents");
+        int count = articleDao.update(article);
+        assertThat(count, is(1));
+    }
+
 }

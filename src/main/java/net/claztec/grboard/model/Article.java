@@ -90,4 +90,17 @@ public class Article {
                 ", regdttm=" + regdttm +
                 '}';
     }
+
+    public void upHit() {
+        this.hit++;
+    }
+
+
+    public void upHate() {
+        this.hate++;
+    }
+
+    public void upLike() {
+        this.like++;
+    }
 }
