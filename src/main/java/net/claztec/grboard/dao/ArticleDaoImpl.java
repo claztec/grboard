@@ -1,7 +1,9 @@
 package net.claztec.grboard.dao;
 
+import net.claztec.grboard.exception.DataNotFoundException;
 import net.claztec.grboard.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -35,7 +37,13 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public Article findById(String articleId) {
-        return jdbcTemplate.queryForObject("select * from article where articleid = ?", new Object[]{articleId}, new ArticleRowMapper());
+        Article article = null;
+        try {
+            article = jdbcTemplate.queryForObject("select * from article where articleid = ?", new Object[]{articleId}, new ArticleRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            throw new DataNotFoundException();
+        }
+        return article;
     }
 
     @Override
@@ -45,7 +53,11 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public int removeById(String articleId) {
-        return jdbcTemplate.update("delete from article where articleid = ?", new Object[]{articleId});
+        int result = jdbcTemplate.update("delete from article where articleid = ?", new Object[]{articleId});
+        if (result == 0) {
+            throw new DataNotFoundException();
+        }
+        return result;
     }
 
     @Override

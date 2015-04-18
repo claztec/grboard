@@ -1,6 +1,7 @@
 package net.claztec.grboard.dao;
 
 import net.claztec.grboard.config.ApplicationConfig;
+import net.claztec.grboard.exception.DataNotFoundException;
 import net.claztec.grboard.model.Article;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,6 +69,14 @@ public class ArticleDaoTest {
         log.debug(article.toString());
     }
 
+    @Test(expected = DataNotFoundException.class)
+    public void testFindEmptyData() {
+        String articleId = "111";
+        Article article = articleDao.findById(articleId);
+        assertThat(article.getArticleId(), is(articleId));
+        log.debug(article.toString());
+    }
+
     @Test
     public void testFindAll() {
         List<Article> articleList = articleDao.findAll();
@@ -85,6 +94,13 @@ public class ArticleDaoTest {
         assertThat(length, greaterThan(0));
         Article article = articleList.get(length - 1);
         int count = articleDao.removeById(article.getArticleId());
+        assertThat(count, is(1));
+    }
+
+    @Test(expected = DataNotFoundException.class)
+    public void testRemoveEmptyData() {
+        String id = "15";
+        int count = articleDao.removeById(id);
         assertThat(count, is(1));
     }
 
