@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import java.util.Collections;
@@ -61,7 +62,7 @@ public class ArticleDaoTest {
     }
 
     @Test
-    public void testFindArticleById() {
+    public void testFindById() {
         log.debug("@@ START @@");
         String articleId = "1";
         Article article = articleDao.findById(articleId);
@@ -69,7 +70,8 @@ public class ArticleDaoTest {
         log.debug(article.toString());
     }
 
-    @Test(expected = DataNotFoundException.class)
+//    @Test(expected = DataNotFoundException.class)
+    @Test
     public void testFindEmptyData() {
         String articleId = "111";
         Article article = articleDao.findById(articleId);
@@ -87,6 +89,7 @@ public class ArticleDaoTest {
     }
 
     @Test
+    @Transactional
     public void testRemoveById() {
         List<Article> articleList = articleDao.findAll();
 
@@ -111,14 +114,14 @@ public class ArticleDaoTest {
         int length = articleList.size();
         assertThat(length, greaterThan(0));
         Article article = articleList.get(length - 1);
-
+        int beforeHitCount = article.getHit();
         article.setTitle("Change Title");
         article.upHit();
-        article.upHate();
-        article.upLike();
         article.setContents("Change Contents");
         int count = articleDao.update(article);
-        assertThat(count, is(1));
+        Article afterArticle = articleList.get(length -1);
+        int afterHitCount = afterArticle.getHit();
+        assertThat(afterHitCount - beforeHitCount, is(1));
     }
 
 }
