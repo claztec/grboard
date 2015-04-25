@@ -5,9 +5,14 @@ import net.claztec.grboard.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -31,7 +36,18 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public Article add(Article article) {
-        jdbcTemplate.update("insert into article (title, contents, regdttm) values (?, ?, ?)", new Object[]{article.getTitle(), article.getContents(), new Date()});
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                PreparedStatement ps = con.prepareStatement("insert into article (title, contents, regdttm) values (?, ?, now())", new String[]{"id"});
+                ps.setString(1, article.getTitle());
+                ps.setString(2, article.getContents());
+                return ps;
+            }
+        }, keyHolder);
+//        jdbcTemplate.update("insert into article (title, contents, regdttm) values (?, ?, now())", new Object[]{article.getTitle(), article.getContents()});
+        article.setArticleId(keyHolder.getKey().toString());
         return article;
     }
 
