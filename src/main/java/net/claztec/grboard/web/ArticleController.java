@@ -51,14 +51,14 @@ public class ArticleController {
 
             model.addAttribute("error", errorMap);
             model.addAttribute("article", article);
+
+            List<Article> articleList = articleService.getArticleListAll();
+            model.addAttribute("articles", articleList);
+            return "index";
         } else {
             articleService.addArticle(article);
-            model.addAttribute("article", null); // form 필드 클리어.
+            return "redirect:/articles";
         }
-
-        List<Article> articleList = articleService.getArticleListAll();
-        model.addAttribute("articles", articleList);
-        return "index";
     }
 
 
