@@ -12,9 +12,7 @@ import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -34,16 +32,6 @@ public class ArticleDaoTest {
     @Autowired
     private ArticleDao articleDao;
 
-    @Test
-    public void getArticleId() {
-        // 1. article dao 만들기
-        // 2. article dao에서 테스트 메소드 호출하기.
-        // 3. 테스트 메소드는 db연결이 되어있어야함.
-
-        String title = articleDao.getTest();
-        assertThat(title, is("테스트"));
-    }
-
     /*
         - 글 등록
         - 글 조회
@@ -57,7 +45,7 @@ public class ArticleDaoTest {
         Article article = new Article();
         article.setTitle("test");
         article.setContents("content");
-        Article insertedArticle = articleDao.add(article);
+        Article insertedArticle = articleDao.insert(article);
         assertThat(article.getTitle(), is(insertedArticle.getTitle()));
     }
 

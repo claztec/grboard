@@ -1,7 +1,6 @@
 package net.claztec.grboard.model;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import java.util.Date;
 

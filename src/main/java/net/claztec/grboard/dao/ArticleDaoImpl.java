@@ -29,13 +29,7 @@ public class ArticleDaoImpl implements ArticleDao {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public String getTest() {
-        String title = jdbcTemplate.queryForObject("select title from article where articleid = ?", new Object[]{"1"}, String.class);
-        return title;
-    }
-
-    @Override
-    public Article add(Article article) {
+    public Article insert(Article article) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override

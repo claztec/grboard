@@ -38,7 +38,7 @@ public class HelloController {
         Map<String, Object> model = new HashMap<>();
         model.put("time", new Date());
         model.put("message", "welcome");
-        String title = articleDao.getTest();
+        String title = "타이틀";
         model.put("title", title);
         return model;
     }
@@ -46,7 +46,7 @@ public class HelloController {
     public String index(Map<String, Object> model) {
         model.put("time", new Date());
         model.put("message", "welcome");
-        String title = articleDao.getTest();
+        String title = "타이틀";
         model.put("title", title);
         return "index";
     }

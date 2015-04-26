@@ -39,6 +39,6 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article addArticle(Article article) {
-        return articleDao.add(article);
+        return articleDao.insert(article);
     }
 }
