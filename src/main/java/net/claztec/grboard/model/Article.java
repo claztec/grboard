@@ -1,5 +1,7 @@
 package net.claztec.grboard.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import java.util.Date;
 
 /**
@@ -10,8 +12,10 @@ public class Article {
 
     private String articleId;
 
+    @NotEmpty(message = "제목을 입력하세요.")
     private String title;
 
+    @NotEmpty(message = "내용을 입력하세요.")
     private String contents;
 
     private int like;

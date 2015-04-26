@@ -6,13 +6,23 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
 </head>
 <body>
-    #if(true)
-    <h1>성공</h1>
-    this is true!!!
-    한글
-    ${message}
-    ${time}
-    ${title}
+<h1>GR BOARD</h1>
+
+<form action="/articles" method="post">
+    <fieldset>
+        <legend>게시글 작성</legend>
+        <label for="title">제목</label>
+        <input name="title" type="text" id="title" value="$!{article.title}"> #if($error.title) ${error["title"]} #end <br/>
+        <label for="contents">내용</label>
+        <textarea name="contents" id="contents" cols="40" rows="5">$!{article.contents}</textarea>#if($error.contents) ${error["contents"]} #end  <br/>
+        <input type="submit" value="확인"/><input type="reset" value="취소"/>
+    </fieldset>
+</form>
+<ul>
+    #foreach($article in ${articles})
+        <li>$article.getArticleId() $article.getTitle()</li>
     #end
+</ul>
+
 </body>
 </html>
