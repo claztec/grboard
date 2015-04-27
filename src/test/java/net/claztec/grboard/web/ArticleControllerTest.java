@@ -44,11 +44,11 @@ public class ArticleControllerTest {
 //   validation
 //    http://egloos.zum.com/springmvc/v/509029
 
-//    @Test
-//    public void getArticles() throws Exception {
-//        mvc.perform(MockMvcRequestBuilders.get("/articles").accept(MediaType.TEXT_HTML))
-//                .andExpect(status().isOk());
-//    }
+    @Test
+    public void getArticles() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/articles").accept(MediaType.TEXT_HTML))
+                .andExpect(status().isOk());
+    }
 
 //    @Test
 //    public void addArticle() throws Exception {

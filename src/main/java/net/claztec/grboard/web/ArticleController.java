@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -58,6 +59,13 @@ public class ArticleController {
             articleService.addArticle(article);
             return "redirect:/articles";
         }
+    }
+
+    @RequestMapping(value = "/articles/{articleId}", method = {RequestMethod.GET})
+    public String getArticle(@PathVariable String articleId, Model model) {
+        Article article = articleService.getArticle(articleId);
+        model.addAttribute("article", article);
+        return "detail";
     }
 
 

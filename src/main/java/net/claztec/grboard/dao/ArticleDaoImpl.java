@@ -86,7 +86,7 @@ public class ArticleDaoImpl implements ArticleDao {
             article.setLike(rs.getInt("likecount"));
             article.setHate(rs.getInt("hatecount"));
             article.setHit(rs.getInt("hitcount"));
-            article.setRegdttm(rs.getDate("regdttm"));
+            article.setRegdttm(rs.getTimestamp("regdttm"));
             return article;
         }
     }

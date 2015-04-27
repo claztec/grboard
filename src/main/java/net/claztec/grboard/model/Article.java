@@ -2,6 +2,8 @@ package net.claztec.grboard.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -24,7 +26,7 @@ public class Article {
 
     private int hit;
 
-    private Date regdttm;
+    private Timestamp regdttm;
 
     public String getArticleId() {
         return articleId;
@@ -74,11 +76,11 @@ public class Article {
         this.hit = hit;
     }
 
-    public Date getRegdttm() {
+    public Timestamp getRegdttm() {
         return regdttm;
     }
 
-    public void setRegdttm(Date regdttm) {
+    public void setRegdttm(Timestamp regdttm) {
         this.regdttm = regdttm;
     }
 

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationContextLoader;
+import org.springframework.test.annotation.Repeat;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,6 +81,7 @@ public class ArticleServiceTest {
     }
 
     @Test
+    @Repeat(100000)
     public void testAddArticle() {
         String title = "게시판 테스트";
         String contents = "게시판 테스트. \n 줄바꿈 해서 한줄.";
