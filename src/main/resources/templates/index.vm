@@ -3,7 +3,7 @@
 <head lang="ko">
     <meta charset="UTF-8">
     <title>Hello World</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 </head>
 <body>
 <h1>GR BOARD</h1>
@@ -20,7 +20,7 @@
 </form>
 <ul>
     #foreach($article in ${articles})
-        <li>$article.getArticleId() $article.getTitle()</li>
+        <li>$article.getArticleId() <a href="/articles/$article.getArticleId()">$article.getTitle()</a> <a href="/articles/remove/$article.getArticleId()">삭제</a></li>
     #end
 </ul>
 

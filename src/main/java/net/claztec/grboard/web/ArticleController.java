@@ -68,5 +68,11 @@ public class ArticleController {
         return "detail";
     }
 
+    @RequestMapping(value ="/articles/remove/{articleId}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String removeArticle(@PathVariable String articleId) {
+        articleService.removeArticle(articleId);
+        return "redirect:/articles";
+    }
+
 
 }
