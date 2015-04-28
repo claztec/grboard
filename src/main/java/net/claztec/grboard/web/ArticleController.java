@@ -43,13 +43,13 @@ public class ArticleController {
             for (ObjectError error : errors) {
                 if (error instanceof FieldError) {
                     FieldError fieldError = (FieldError)error;
-                    String field = fieldError.getField();
+                    String field = fieldError.getField() + "Err";
                     String message = fieldError.getDefaultMessage();
-                    errorMap.put(field, message);
+                    model.addAttribute(field, message);
                 }
             }
 
-            model.addAttribute("error", errorMap);
+
             model.addAttribute("article", article);
 
             List<Article> articleList = articleService.getArticleListAll();

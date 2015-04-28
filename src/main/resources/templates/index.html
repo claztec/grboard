@@ -8,6 +8,18 @@
 </head>
 <body>
 <h1>GR BOARD</h1>
+
+<form action="articles" th:attr="action=@{/articles}" method="post">
+    <fieldset>
+        <legend>게시글 작성</legend>
+        <label for="title">제목</label>
+        <input name="title" type="text" id="title" th:value="${article != null} ? ${article.title}" /><span th:text="${titleErr != null} ? ${titleErr}"></span><br/>
+        <label for="contents">내용</label>
+        <textarea name="contents" id="contents" cols="40" rows="5" th:text="${article != null} ? ${article.contents}"></textarea><br/><span th:text="${contentsErr != null} ? ${contentsErr}"></span><br/>
+        <input type="submit" value="확인"/><input type="reset" value="취소"/>
+    </fieldset>
+</form>
+
 <table>
     <tr>
         <th>글번호</th>
@@ -18,7 +30,6 @@
         <td th:text="${article.articleId}">122121</td>
         <td th:text="${article.title}">타이틀</td>
         <td th:text="|${article.date} ${article.time}|">2015-11-11 22:10:22</td>
-        <!--<td th:text="${#calendars.format(article.date,'yyyy-MM-dd')} + ' ' + ${#dates.format(article.time,'HH:mm:ss')}">2015-04-03 11:12:99 </td>-->
     </tr>
 </table>
 

@@ -58,7 +58,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> findAll() {
-        return jdbcTemplate.query("select * from article order by articleid DESC", new ArticleRowMapper());
+        return jdbcTemplate.query("select * from article order by articleid DESC limit 100", new ArticleRowMapper());
     }
 
     @Override
