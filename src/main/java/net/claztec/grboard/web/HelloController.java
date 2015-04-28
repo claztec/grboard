@@ -54,9 +54,9 @@ public class HelloController {
     @RequestMapping(value = "/index.do")
     public ModelAndView index2() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("time", new Date());
-        mav.addObject("message", "welcom~~~~");
-        mav.addObject("title", "title");
+//        mav.addObject("time", new Date());
+//        mav.addObject("message", "welcom~~~~");
+//        mav.addObject("title", "title");
         mav.setViewName("index");
         return mav;
     }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="ko">
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>GR BOARD</h1>
+<div>
+    <dl>
+        <dt th:text="|id: ${article.articleId} title: ${article.title}|">타이틀</dt><span th:text="${article.date} + ' ' + ${article.time}">(2015-11-30)</span><span th:text="${#calendars.format(article.date,'(yyyy-MM-dd)')}">(2015-11-30)</span>
+        <span th:text="${#dates.format(article.time,'(HH:mm:ss)')}">(2015-11-30)</span>
+        <dd th:text="|내용: ${article.contents}|">내용 : 내용</dd>
+        <!--<span th:text="${'The application name is : '+T(doan.thymeleaf.demo.util.Constants).APPLICATION_NAME}">The application name is : Test</span>-->
+    </dl>
+</div>
+</body>
+</html>

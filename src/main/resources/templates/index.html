@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="ko">
+    <meta charset="UTF-8"/>
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<h1>GR BOARD</h1>
+<table>
+    <tr>
+        <th>글번호</th>
+        <th>제목</th>
+        <th>날짜</th>
+    </tr>
+    <tr th:each="article : ${articles}">
+        <td th:text="${article.articleId}">122121</td>
+        <td th:text="${article.title}">타이틀</td>
+        <td th:text="|${article.date} ${article.time}|">2015-11-11 22:10:22</td>
+        <!--<td th:text="${#calendars.format(article.date,'yyyy-MM-dd')} + ' ' + ${#dates.format(article.time,'HH:mm:ss')}">2015-04-03 11:12:99 </td>-->
+    </tr>
+</table>
+
+</body>
+</html>

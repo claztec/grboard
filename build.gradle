@@ -32,7 +32,7 @@ configurations {
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-velocity:1.2.3.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:1.2.3.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-jdbc:1.2.3.RELEASE'
     compile 'aspectj:aspectjrt:1.5.4'
     compile 'org.aspectj:aspectjweaver:1.8.5'

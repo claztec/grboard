@@ -26,7 +26,9 @@ public class Article {
 
     private int hit;
 
-    private Timestamp regdttm;
+    private Date date;
+
+    private Time time;
 
     public String getArticleId() {
         return articleId;
@@ -76,12 +78,32 @@ public class Article {
         this.hit = hit;
     }
 
-    public Timestamp getRegdttm() {
-        return regdttm;
+    public Date getDate() {
+        return date;
     }
 
-    public void setRegdttm(Timestamp regdttm) {
-        this.regdttm = regdttm;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public void upHit() {
+        this.hit++;
+    }
+
+    public void upHate() {
+        this.hate++;
+    }
+
+    public void upLike() {
+        this.like++;
     }
 
     @Override
@@ -93,20 +115,8 @@ public class Article {
                 ", like=" + like +
                 ", hate=" + hate +
                 ", hit=" + hit +
-                ", regdttm=" + regdttm +
+                ", date=" + date +
+                ", time=" + time +
                 '}';
-    }
-
-    public void upHit() {
-        this.hit++;
-    }
-
-
-    public void upHate() {
-        this.hate++;
-    }
-
-    public void upLike() {
-        this.like++;
     }
 }

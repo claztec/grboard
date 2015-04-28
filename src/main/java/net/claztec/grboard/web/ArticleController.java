@@ -65,6 +65,8 @@ public class ArticleController {
     public String getArticle(@PathVariable String articleId, Model model) {
         Article article = articleService.getArticle(articleId);
         model.addAttribute("article", article);
+        model.addAttribute("regdate", article.getDate());
+        model.addAttribute("regtime", article.getTime());
         return "detail";
     }
 
