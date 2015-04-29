@@ -3,7 +3,8 @@ package net.claztec.grboard.model;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.sql.Time;
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -29,6 +30,8 @@ public class Article {
     private Date date;
 
     private Time time;
+
+    private String dateOrTime;
 
     public String getArticleId() {
         return articleId;
@@ -104,6 +107,20 @@ public class Article {
 
     public void upLike() {
         this.like++;
+    }
+
+    public String getDateOrTime() {
+        SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd" );
+
+        String registorDate = date.toString();
+        String today = format.format(new Date());
+
+        if (today.equals(registorDate)) {
+            dateOrTime = time.toString();
+        } else {
+            dateOrTime = registorDate;
+        }
+        return dateOrTime;
     }
 
     @Override

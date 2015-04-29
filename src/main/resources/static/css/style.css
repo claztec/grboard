@@ -1,3 +1,68 @@
 h1 {
-  color: red;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*form {display: none;}*/
+
+a {
+    color: #374273;
+    text-decoration: none;
+}
+
+table {
+    table-layout:fixed;
+}
+
+tr {
+
+}
+
+td {
+    border-bottom: 2px solid #ebebeb;
+    pading: 4px 0 3px 0;
+    height: 23px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+
+
+#contentWrap {
+    /*border: 1px solid red;*/
+    width: 782px;
+    margin: 0px auto;
+    margin-top: 10px;
+    font-family: Tahoma,"굴림",Gulim,AppleSDGothicNeo,AppleGothic;
+    color: #374273;
+}
+
+#articleTable {
+    margin-top: 10px;
+}
+
+.article_no {
+    width: 57px;
+    text-align: center;
+}
+
+.article_title {
+    width: 514px;
+    text-align: left;
+}
+
+.article_date .article_name {
+    width: 82px;
+}
+
+.article_hit {
+    width: 47px;
+}
+
+.table_text_over {
+    width: 514px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

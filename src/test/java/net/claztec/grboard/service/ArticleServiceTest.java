@@ -14,6 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -91,5 +94,16 @@ public class ArticleServiceTest {
         Article afterArticle = articleService.addArticle(article);
         assertThat(afterArticle.getTitle(), is(article.getTitle()));
         log.debug(afterArticle.toString());
+    }
+
+    @Test
+    public void dateCal() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd" );
+
+        String date1 = "2015-04-28";
+        String date2 = format.format(new Date());
+
+        boolean result = date1.equals(date2);
+        System.out.println(result);
     }
 }
