@@ -5,15 +5,6 @@
     <meta charset="UTF-8"/>
     <title>Hello World</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <script type="text/javascript">
-        function deleteRow(id) {
-            alert(id);
-            var f = document.getElementById("deleteForm");
-            f.action = "/articles/" + id;
-            alert(f.action);
-            f.submit();
-        }
-    </script>
 </head>
 <body>
 <h1>GR BOARD</h1>
@@ -34,20 +25,14 @@
         <th>글번호</th>
         <th>제목</th>
         <th>날짜</th>
-        <th> </th>
     </tr>
 
     <tr th:each="article : ${articles}">
         <td th:text="${article.articleId}">122121</td>
-        <td th:text="${article.title}">타이틀</td>
+        <td><a href="#" th:href="|/articles/${article.articleId}|" th:text="${article.title}">타이틀</a></td>
         <td th:text="|${article.date} ${article.time}|">2015-11-11 22:10:22</td>
-        <td><button th:onclick="'javascript:deleteRow(\'' + ${article.articleId} + '\');'">삭제</button></td>
     </tr>
 </table>
-
-
-<form id="deleteForm"  th:method="delete">
-</form>
 
 
 </body>
