@@ -22,9 +22,11 @@
         <span th:text="${#dates.format(article.time,'(HH:mm:ss)')}">(2015-11-30)</span>
         <dd th:text="|내용: ${article.contents}|">내용 : 내용</dd>
         <button th:onclick="'javascript:deleteRow(\'' + ${article.articleId} + '\');'">삭제</button>
+        <button><a href="/articles">목록</a></button>
     </dl>
 </div>
 <form id="deleteForm"  th:method="delete">
 </form>
+
 </body>
 </html>

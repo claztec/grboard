@@ -64,6 +64,7 @@ public class ArticleController {
     @RequestMapping(value = "/articles/{articleId}", method = {RequestMethod.GET})
     public String getArticle(@PathVariable String articleId, Model model) {
         Article article = articleService.getArticle(articleId);
+        articleService.upHitCount(article);
         model.addAttribute("article", article);
         model.addAttribute("regdate", article.getDate());
         model.addAttribute("regtime", article.getTime());

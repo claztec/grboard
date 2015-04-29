@@ -97,18 +97,6 @@ public class Article {
         this.time = time;
     }
 
-    public void upHit() {
-        this.hit++;
-    }
-
-    public void upHate() {
-        this.hate++;
-    }
-
-    public void upLike() {
-        this.like++;
-    }
-
     public String getDateOrTime() {
         SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd" );
 

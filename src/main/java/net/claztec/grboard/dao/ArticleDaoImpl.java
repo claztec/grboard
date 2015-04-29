@@ -76,6 +76,11 @@ public class ArticleDaoImpl implements ArticleDao {
                 new Object[] {article.getTitle(), article.getContents(), article.getLike(), article.getHate(), article.getHit(), article.getArticleId()});
     }
 
+    @Override
+    public int upHitCount(String articleId) {
+        return jdbcTemplate.update("update article set hitcount = hitcount +1 where articleid=?", new Object[] {articleId});
+    }
+
     private static final class ArticleRowMapper implements RowMapper<Article> {
         @Override
         public Article mapRow(ResultSet rs, int rowNum) throws SQLException {

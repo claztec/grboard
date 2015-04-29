@@ -17,4 +17,6 @@ public interface ArticleService {
     void removeArticle(String articleId);
 
     Article addArticle(Article article);
+
+    void upHitCount(Article article);
 }

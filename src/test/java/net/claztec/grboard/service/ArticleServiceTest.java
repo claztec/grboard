@@ -68,7 +68,7 @@ public class ArticleServiceTest {
         Article beforeArticle = articleService.getArticle(articleId);
         int beforeHitCount = beforeArticle.getHit();
         assertThat(beforeArticle.getArticleId(), is(articleId));
-        beforeArticle.upHit();
+        beforeArticle.setHit(beforeHitCount + 1);
         articleService.updateArticle(beforeArticle);
         Article afterArticle = articleService.getArticle(articleId);
         assertThat(afterArticle.getHit(), greaterThan(beforeHitCount));
