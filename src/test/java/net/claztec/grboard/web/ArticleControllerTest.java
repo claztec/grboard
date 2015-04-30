@@ -44,6 +44,9 @@ public class ArticleControllerTest {
 //   validation
 //    http://egloos.zum.com/springmvc/v/509029
 
+//   thymeleaf
+//    http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html
+
     @Test
     public void getArticles() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/articles").accept(MediaType.TEXT_HTML))

@@ -41,4 +41,9 @@ public class ArticleServiceImpl implements ArticleService {
     public Article addArticle(Article article) {
         return articleDao.insert(article);
     }
+
+    @Override
+    public void upHitCount(Article article) {
+        articleDao.upHitCount(article.getArticleId());
+    }
 }

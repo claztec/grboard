@@ -58,7 +58,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> findAll() {
-        return jdbcTemplate.query("select * from article order by articleid DESC", new ArticleRowMapper());
+        return jdbcTemplate.query("select * from article order by articleid DESC limit 100", new ArticleRowMapper());
     }
 
     @Override
@@ -76,6 +76,11 @@ public class ArticleDaoImpl implements ArticleDao {
                 new Object[] {article.getTitle(), article.getContents(), article.getLike(), article.getHate(), article.getHit(), article.getArticleId()});
     }
 
+    @Override
+    public int upHitCount(String articleId) {
+        return jdbcTemplate.update("update article set hitcount = hitcount +1 where articleid=?", new Object[] {articleId});
+    }
+
     private static final class ArticleRowMapper implements RowMapper<Article> {
         @Override
         public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -86,7 +91,8 @@ public class ArticleDaoImpl implements ArticleDao {
             article.setLike(rs.getInt("likecount"));
             article.setHate(rs.getInt("hatecount"));
             article.setHit(rs.getInt("hitcount"));
-            article.setRegdttm(rs.getTimestamp("regdttm"));
+            article.setDate(rs.getDate("regdttm"));
+            article.setTime(rs.getTime("regdttm"));
             return article;
         }
     }

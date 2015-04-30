@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="ko">
+    <meta charset="UTF-8"/>
+    <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+
+<div id="contentWrap">
+    <h1>GR BOARD</h1>
+    <form th:object="${article}" action="articles" th:attr="action=@{/articles}" method="post">
+        <fieldset>
+            <legend>게시글 작성</legend>
+            <label for="title">제목</label>
+            <input name="title" type="text" id="title" th:value="${article != null} ? ${article.title}" /><span th:text="${titleErr != null} ? ${titleErr}"></span><br/>
+            <label for="contents">내용</label>
+            <textarea name="contents" id="contents" cols="40" rows="5" th:text="${article != null} ? ${article.contents}"></textarea><span th:text="${contentsErr != null} ? ${contentsErr}"></span><br/>
+            <input type="submit" value="확인"/><input type="reset" value="취소"/>
+        </fieldset>
+    </form>
+
+    <table id="articleTable">
+        <tr>
+            <th class="article_no">No</th>
+            <th class="article_title">Subject</th>
+            <th class="article_date">date</th>
+            <th class="article_name">name</th>
+            <th class="article_hit">hit</th>
+        </tr>
+
+        <tr class="article_no" th:each="article : ${articles}">
+            <td th:text="${article.articleId}">122121</td>
+            <!--<td class="article_title"><a href="#" th:href="|/articles/${article.articleId}|" th:text="${article.title}">타이틀</a></td>-->
+            <td><div class="table_text_over"><a href="#" th:href="|/articles/${article.articleId}|" th:text="${article.title}">타이틀</a></div></td>
+            <td th:text="${article.dateOrTime}">22:10:22</td>
+            <td>글쓴이</td>
+            <td th:text="${article.hit}">1</td>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+</html>

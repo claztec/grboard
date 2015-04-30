@@ -104,12 +104,19 @@ public class ArticleDaoTest {
         Article article = articleList.get(length - 1);
         int beforeHitCount = article.getHit();
         article.setTitle("Change Title");
-        article.upHit();
+        article.setHit(article.getHit() + 1);
         article.setContents("Change Contents");
         int count = articleDao.update(article);
         Article afterArticle = articleList.get(length -1);
         int afterHitCount = afterArticle.getHit();
         assertThat(afterHitCount - beforeHitCount, is(1));
+    }
+
+    @Test
+    public void upHitCount() {
+        String articleId = "1";
+        int updateCount = articleDao.upHitCount(articleId);
+        assertThat(updateCount, is(1));
     }
 
 }

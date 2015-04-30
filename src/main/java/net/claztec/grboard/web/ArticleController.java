@@ -43,13 +43,13 @@ public class ArticleController {
             for (ObjectError error : errors) {
                 if (error instanceof FieldError) {
                     FieldError fieldError = (FieldError)error;
-                    String field = fieldError.getField();
+                    String field = fieldError.getField() + "Err";
                     String message = fieldError.getDefaultMessage();
-                    errorMap.put(field, message);
+                    model.addAttribute(field, message);
                 }
             }
 
-            model.addAttribute("error", errorMap);
+
             model.addAttribute("article", article);
 
             List<Article> articleList = articleService.getArticleListAll();
@@ -64,11 +64,14 @@ public class ArticleController {
     @RequestMapping(value = "/articles/{articleId}", method = {RequestMethod.GET})
     public String getArticle(@PathVariable String articleId, Model model) {
         Article article = articleService.getArticle(articleId);
+        articleService.upHitCount(article);
         model.addAttribute("article", article);
+        model.addAttribute("regdate", article.getDate());
+        model.addAttribute("regtime", article.getTime());
         return "detail";
     }
 
-    @RequestMapping(value ="/articles/remove/{articleId}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value ="/articles/{articleId}", method = {RequestMethod.DELETE})
     public String removeArticle(@PathVariable String articleId) {
         articleService.removeArticle(articleId);
         return "redirect:/articles";

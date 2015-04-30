@@ -3,7 +3,8 @@ package net.claztec.grboard.model;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.sql.Time;
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -26,7 +27,11 @@ public class Article {
 
     private int hit;
 
-    private Timestamp regdttm;
+    private Date date;
+
+    private Time time;
+
+    private String dateOrTime;
 
     public String getArticleId() {
         return articleId;
@@ -76,12 +81,34 @@ public class Article {
         this.hit = hit;
     }
 
-    public Timestamp getRegdttm() {
-        return regdttm;
+    public Date getDate() {
+        return date;
     }
 
-    public void setRegdttm(Timestamp regdttm) {
-        this.regdttm = regdttm;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
+    }
+
+    public String getDateOrTime() {
+        SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd" );
+
+        String registorDate = date.toString();
+        String today = format.format(new Date());
+
+        if (today.equals(registorDate)) {
+            dateOrTime = time.toString();
+        } else {
+            dateOrTime = registorDate;
+        }
+        return dateOrTime;
     }
 
     @Override
@@ -93,20 +120,8 @@ public class Article {
                 ", like=" + like +
                 ", hate=" + hate +
                 ", hit=" + hit +
-                ", regdttm=" + regdttm +
+                ", date=" + date +
+                ", time=" + time +
                 '}';
-    }
-
-    public void upHit() {
-        this.hit++;
-    }
-
-
-    public void upHate() {
-        this.hate++;
-    }
-
-    public void upLike() {
-        this.like++;
     }
 }

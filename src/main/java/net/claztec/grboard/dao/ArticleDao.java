@@ -18,4 +18,6 @@ public interface ArticleDao {
     int removeById(String articleId);
 
     int update(Article article);
+
+    int upHitCount(String articleId);
 }
