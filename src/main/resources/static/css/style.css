@@ -37,6 +37,15 @@ td {
     color: #374273;
 }
 
+#addForm {
+    display: none;
+    margin: 10px 0 10px 0;
+}
+
+#menu {
+    float: right;
+}
+
 #articleTable {
     margin-top: 10px;
 }
