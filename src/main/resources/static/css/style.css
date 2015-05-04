@@ -30,7 +30,7 @@ td {
 
 #contentWrap {
     /*border: 1px solid red;*/
-    width: 782px;
+    width: 730px;
     margin: 0px auto;
     margin-top: 10px;
     font-family: Tahoma,"굴림",Gulim,AppleSDGothicNeo,AppleGothic;
@@ -65,4 +65,12 @@ td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.previous {
+    float: right;
+}
+
+.next {
+    float: left;
 }

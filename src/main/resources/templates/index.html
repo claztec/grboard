@@ -41,6 +41,15 @@
         </tr>
 
     </table>
+    <div id="paging">
+        <span class="next" th:if="${page.hasNext()}">
+            <a href="#" th:href="@{/articles(offset=${page.next()}, limit=${page.getLimit()})}">next</a>
+        </span>
+        <span class="previous" th:if="${page.hasPrevious()}">
+            <a href="#" th:href="@{/articles(offset=${page.previous()}, limit=${page.getLimit()})}">previous</a>
+        </span>
+    </div>
+
 </div>
 
 </body>

@@ -1,6 +1,7 @@
 package net.claztec.grboard.web;
 
 import net.claztec.grboard.model.Article;
+import net.claztec.grboard.model.Page;
 import net.claztec.grboard.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +29,10 @@ public class ArticleController {
     private ArticleService articleService;
 
     @RequestMapping(value = "/articles", method = {RequestMethod.GET})
-    public String getArticles(Model model) {
-        List<Article> articleList = articleService.getArticleListAll();
+    public String getArticles(@ModelAttribute Page page, Model model) {
+        List<Article> articleList = articleService.getArticleListAll(page);
         model.addAttribute("articles", articleList);
+        model.addAttribute("page", page);
         return "index";
     }
 

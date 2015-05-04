@@ -1,6 +1,7 @@
 package net.claztec.grboard.service;
 
 import net.claztec.grboard.model.Article;
+import net.claztec.grboard.model.Page;
 
 import java.util.List;
 
@@ -9,6 +10,8 @@ import java.util.List;
  */
 public interface ArticleService {
     List<Article> getArticleListAll();
+
+    List<Article> getArticleListAll(Page page);
 
     Article getArticle(String articleId);
 
@@ -19,4 +22,5 @@ public interface ArticleService {
     Article addArticle(Article article);
 
     void upHitCount(Article article);
+
 }

@@ -3,6 +3,7 @@ package net.claztec.grboard.dao;
 import net.claztec.grboard.config.ApplicationConfig;
 import net.claztec.grboard.exception.DataNotFoundException;
 import net.claztec.grboard.model.Article;
+import net.claztec.grboard.model.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
@@ -117,6 +119,21 @@ public class ArticleDaoTest {
         String articleId = "1";
         int updateCount = articleDao.upHitCount(articleId);
         assertThat(updateCount, is(1));
+    }
+
+    @Test
+    public void testFindAllForPage() {
+        int limit = 10;
+        int offset = 0;
+        Page page = new Page(offset, limit);
+        List<Article> articleList = articleDao.findAll(page);
+        assertThat(articleList.size(), is(limit));
+    }
+
+    @Test
+    public void testTotalCount() {
+        int totalCount = articleDao.totalCount();
+        assertTrue(totalCount > 0);
     }
 
 }
