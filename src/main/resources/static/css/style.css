@@ -38,12 +38,7 @@ td {
 }
 
 #addForm {
-    display: none;
     margin: 10px 0 10px 0;
-}
-
-#menu {
-    float: right;
 }
 
 #articleTable {

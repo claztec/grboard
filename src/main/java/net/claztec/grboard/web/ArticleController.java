@@ -50,17 +50,20 @@ public class ArticleController {
                     model.addAttribute(field, message);
                 }
             }
-
-
             model.addAttribute("article", article);
-
-            List<Article> articleList = articleService.getArticleListAll();
-            model.addAttribute("articles", articleList);
-            return "index";
+            return "add_form";
         } else {
             articleService.addArticle(article);
             return "redirect:/articles";
         }
+    }
+
+    @RequestMapping(value = "/articles/write", method = {RequestMethod.GET})
+    public String getWriteForm(@ModelAttribute Page page, Model model) {
+        List<Article> articleList = articleService.getArticleListAll(page);
+        model.addAttribute("articles", articleList);
+        model.addAttribute("page", page);
+        return "add_form";
     }
 
     @RequestMapping(value = "/articles/{articleId}", method = {RequestMethod.GET})

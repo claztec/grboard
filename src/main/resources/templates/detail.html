@@ -8,11 +8,9 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <script type="text/javascript">
         function deleteRow(id) {
-            alert(id);
-            var f = document.getElementById("deleteForm");
-            f.action = "/articles/" + id;
-            alert(f.action);
-            f.submit();
+            var deleteForm = document.getElementById("deleteForm");
+            deleteForm.action = "/articles/" + id;
+            deleteForm.submit();
         }
     </script>
 </head>

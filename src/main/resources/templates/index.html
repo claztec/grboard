@@ -6,29 +6,12 @@
     <title>Hello World</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <script type="text/javascript">
-    function add() {
-        var f = document.getElementById("addForm");
-        f.style.display = 'block';
-    }
-    </script>
 </head>
 <body>
 
 <div id="contentWrap">
     <h1>GR BOARD</h1>
-    <p><span id="menu" onclick="add();">write</span></p>
-    <form id="addForm" th:object="${article}" action="articles" th:attr="action=@{/articles}" method="post">
-        <fieldset>
-            <legend>게시글 작성</legend>
-            <label for="title">제목</label>
-            <input name="title" type="text" id="title" th:value="${article != null} ? ${article.title}" /><span th:text="${titleErr != null} ? ${titleErr}"></span><br/>
-            <label for="contents">내용</label>
-            <textarea name="contents" id="contents" cols="40" rows="5" th:text="${article != null} ? ${article.contents}"></textarea><span th:text="${contentsErr != null} ? ${contentsErr}"></span><br/>
-            <input type="submit" value="확인"/><input type="reset" value="취소"/>
-        </fieldset>
-    </form>
-
+    <p><a href="#" th:href="@{/articles/write}">write</a></p>
     <table id="articleTable">
         <tr>
             <th class="article_no">No</th>
