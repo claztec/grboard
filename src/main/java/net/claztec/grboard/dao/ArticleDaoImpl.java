@@ -2,6 +2,7 @@ package net.claztec.grboard.dao;
 
 import net.claztec.grboard.exception.DataNotFoundException;
 import net.claztec.grboard.model.Article;
+import net.claztec.grboard.model.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,7 +59,13 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> findAll() {
-        return jdbcTemplate.query("select * from article order by articleid DESC limit 100", new ArticleRowMapper());
+        return jdbcTemplate.query("select * from article order by articleid DESC", new ArticleRowMapper());
+    }
+
+    @Override
+    public List<Article> findAll(Page page) {
+        return jdbcTemplate.query("select * from article order by articleid DESC limit ? offset ?", new Object[]{page.getLimit(), page
+        .getOffset()}, new ArticleRowMapper());
     }
 
     @Override
@@ -79,6 +86,11 @@ public class ArticleDaoImpl implements ArticleDao {
     @Override
     public int upHitCount(String articleId) {
         return jdbcTemplate.update("update article set hitcount = hitcount +1 where articleid=?", new Object[] {articleId});
+    }
+
+    @Override
+    public int totalCount() {
+        return jdbcTemplate.queryForObject("select count(*) from article", Integer.class);
     }
 
     private static final class ArticleRowMapper implements RowMapper<Article> {

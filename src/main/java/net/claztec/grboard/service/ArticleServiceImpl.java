@@ -2,6 +2,7 @@ package net.claztec.grboard.service;
 
 import net.claztec.grboard.dao.ArticleDao;
 import net.claztec.grboard.model.Article;
+import net.claztec.grboard.model.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,14 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticleListAll() {
         return articleDao.findAll();
+    }
+
+    @Override
+    public List<Article> getArticleListAll(Page page) {
+        List<Article> articleList = articleDao.findAll(page);
+        int totalCount = articleDao.totalCount();
+        page.setTotalItemCount(totalCount);
+        return articleList;
     }
 
     @Override

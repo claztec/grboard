@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head lang="ko">
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Hello World</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <script type="text/javascript">
         function deleteRow(id) {
-            alert(id);
-            var f = document.getElementById("deleteForm");
-            f.action = "/articles/" + id;
-            alert(f.action);
-            f.submit();
+            var deleteForm = document.getElementById("deleteForm");
+            deleteForm.action = "/articles/" + id;
+            deleteForm.submit();
         }
     </script>
 </head>
 <body>
-<h1>GR BOARD</h1>
-<div>
-    <dl>
-        <dt th:text="|id: ${article.articleId} title: ${article.title}|">타이틀</dt><span th:text="${article.date} + ' ' + ${article.time}">(2015-11-30)</span><span th:text="${#calendars.format(article.date,'(yyyy-MM-dd)')}">(2015-11-30)</span>
-        <span th:text="${#dates.format(article.time,'(HH:mm:ss)')}">(2015-11-30)</span>
-        <dd th:text="|내용: ${article.contents}|">내용 : 내용</dd>
-        <button th:onclick="'javascript:deleteRow(\'' + ${article.articleId} + '\');'">삭제</button>
-        <button><a href="/articles">목록</a></button>
-    </dl>
+<div id="contentWrap">
+    <h1>GR BOARD</h1>
+    <div>
+        <dl>
+            <dt th:text="|id: ${article.articleId} title: ${article.title}|">타이틀</dt><span th:text="${article.date} + ' ' + ${article.time}">(2015-11-30)</span><span th:text="${#calendars.format(article.date,'(yyyy-MM-dd)')}">(2015-11-30)</span>
+            <span th:text="${#dates.format(article.time,'(HH:mm:ss)')}">(2015-11-30)</span>
+            <dd th:text="|내용: ${article.contents}|">내용 : 내용</dd>
+            <button th:onclick="'javascript:deleteRow(\'' + ${article.articleId} + '\');'">삭제</button>
+            <button><a href="/articles">목록</a></button>
+        </dl>
+    </div>
+    <form id="deleteForm"  th:method="delete">
+    </form>
 </div>
-<form id="deleteForm"  th:method="delete">
-</form>
-
 </body>
 </html>

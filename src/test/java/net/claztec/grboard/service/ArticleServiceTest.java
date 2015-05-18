@@ -3,6 +3,7 @@ package net.claztec.grboard.service;
 import net.claztec.grboard.config.ApplicationConfig;
 import net.claztec.grboard.exception.DataNotFoundException;
 import net.claztec.grboard.model.Article;
+import net.claztec.grboard.model.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -52,6 +53,22 @@ public class ArticleServiceTest {
 
         list.forEach(value -> log.debug(value.toString()));
     }
+
+    @Test
+    public void testGetArticleListAllUsingPage() {
+        int offset = 0;
+        int limit = 10;
+        Page page = new Page(offset, limit);
+        List<Article> list = articleService.getArticleListAll(page);
+        assertNotNull(list);
+        list.forEach(value -> log.debug(value.toString()));
+
+        assertThat(list.size(), is(limit));
+        assertThat(page.hasNext(), is(false));
+        assertThat(page.hasPrevious(), is(true));
+        assertThat(page.previous(), is(offset + limit));
+    }
+
 
     @Test
     public void testGetArticle() {

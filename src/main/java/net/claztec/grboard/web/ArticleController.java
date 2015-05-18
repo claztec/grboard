@@ -1,6 +1,7 @@
 package net.claztec.grboard.web;
 
 import net.claztec.grboard.model.Article;
+import net.claztec.grboard.model.Page;
 import net.claztec.grboard.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +29,10 @@ public class ArticleController {
     private ArticleService articleService;
 
     @RequestMapping(value = "/articles", method = {RequestMethod.GET})
-    public String getArticles(Model model) {
-        List<Article> articleList = articleService.getArticleListAll();
+    public String getArticles(@ModelAttribute Page page, Model model) {
+        List<Article> articleList = articleService.getArticleListAll(page);
         model.addAttribute("articles", articleList);
+        model.addAttribute("page", page);
         return "index";
     }
 
@@ -48,17 +50,20 @@ public class ArticleController {
                     model.addAttribute(field, message);
                 }
             }
-
-
             model.addAttribute("article", article);
-
-            List<Article> articleList = articleService.getArticleListAll();
-            model.addAttribute("articles", articleList);
-            return "index";
+            return "add_form";
         } else {
             articleService.addArticle(article);
             return "redirect:/articles";
         }
+    }
+
+    @RequestMapping(value = "/articles/write", method = {RequestMethod.GET})
+    public String getWriteForm(@ModelAttribute Page page, Model model) {
+        List<Article> articleList = articleService.getArticleListAll(page);
+        model.addAttribute("articles", articleList);
+        model.addAttribute("page", page);
+        return "add_form";
     }
 
     @RequestMapping(value = "/articles/{articleId}", method = {RequestMethod.GET})
