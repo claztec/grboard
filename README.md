@@ -24,4 +24,4 @@ CREATE TABLE `article` (
   KEY `idx_article_regdttm` (`regdttm`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100093 DEFAULT CHARSET=utf8;
 ```
-
+pull request by hs9923 // 테스트
